@@ -44,7 +44,7 @@ function App() {
 
   return (
     <div className="container">
-      <nav><a href="#">Codegrid</a></nav>  
+      <nav><a href="#">carol <br /> Sousa</a></nav>  
 
       <section className="wrapper-404" ref={wrapperRef}>
         <div className="title-container">
