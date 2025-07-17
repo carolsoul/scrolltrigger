@@ -107,7 +107,7 @@ nav{
 
 .outro{
   position: absolute;
-  top: 300vh;
+  top: 240vh;
   width: 100%;
   height: 110vh;
   background-color: blue;
@@ -129,7 +129,7 @@ nav{
 
 .carolEyes{
   position: absolute;
-  top: 70%;
+  top: 62%;
   left: -3%;
   transform: scale(1.7);
   width: 100%;
@@ -146,7 +146,7 @@ nav{
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  top: 87%;
+  top: 80%;
   z-index: 2;
   overflow: hidden;
 }
