@@ -46,7 +46,7 @@ a{
 
 h1{
   width: 100%;
-  font-size: 8vh;
+  font-size: 6vh;
   font-weight: 900;
   margin: 0;
 }
@@ -73,6 +73,7 @@ nav{
   width: 100%;
   display: flex;
   justify-content: center;
+  z-index: 2;
 }
 
 
@@ -98,7 +99,7 @@ nav{
 
 #card-1{
   left: 50%;
-  top: 30%;
+  top: 15%;
 }
 
 .outro{
