@@ -185,14 +185,33 @@ nav{
   transform: translate(-90%, -50%);
 }
 
-/*
-@media (max-width: 900px){
-  .wrapper-404{
-    padding-top: 20em;
+
+@media (min-width: 1024px){
+  .title-container{
+    gap: 85rem;
+    padding: 5rem 10rem;
   }
+  h1{
+    font-size: 10vh;
+  }
+  #card-1{
+    transform: scale(1.8);
+    top: 30%;
+    left: 45%;
+  }
+  .carolEyes{
+    top: 50%;
+    left: -1%;
+    transform: scale(1);
+    height: 50%;
+  }
+  .outro{
+    top: 260vh;
+  }
+  
 }
 
-
+/*
 @media (max-width: 768px){
   
 }

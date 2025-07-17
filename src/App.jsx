@@ -11,14 +11,17 @@ function App() {
   const [imagemCarregada, setImagemCarregada] = useState(false);
   const isMobile = window.innerWidth <= 768;
 
-  useEffect(() => {
-    if (!imagemCarregada) return;
-
-    const configs = [
+  const configs = [
       { ref: card1, x: isMobile ? -500 : -2000, rotate: 45 }
     ];
 
-    configs.forEach(({ ref, x, rotate }) => {
+  useEffect(() => {
+    if (!imagemCarregada) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(max-width: 768px)", () => {
+    // MOBILE
       gsap.to(card1.current, {
         xPercent: 0,
         rotation: 0,
@@ -30,18 +33,43 @@ function App() {
           pin: true,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const deslocamento = isMobile ? -100 : -80;
             gsap.set(wrapperRef.current, {
-              x: `${deslocamento * self.progress}vw`,
+              x: `${-100 * self.progress}vw`,
             });
           }
-        },
+        }
       });
     });
 
-    ScrollTrigger.refresh();
+    mm.add("(min-width: 769px)", () => {
+    // DESKTOP
+      gsap.to(card1.current, {
+        xPercent: -15,
+        rotation: 0,
+        scrollTrigger: {
+          trigger: wrapperRef.current,
+          start: "top top",
+          end: "+=800vh",
+          scrub: 1,
+          pin: true,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            gsap.set(wrapperRef.current, {
+              x: `${-80 * self.progress}vw`,
+            });
+          }
+        }
+      });
+    });
+
+    return () => {
+      mm.revert();
+      gsap.killTweensOf(card1.current);
+      gsap.killTweensOf(wrapperRef.current);
+    }
   }, [imagemCarregada]);
 
+  //section outro
   const Magnet = ({
     children,
     padding = 100,
