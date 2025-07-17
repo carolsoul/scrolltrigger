@@ -149,9 +149,12 @@ function App() {
           />
         </div>
 
-        <div className="loop-container">
+      </section> 
+
+      <section className="outro">
+         <div className="loop-container">
           <div className="list">
-            {Array(4).fill(null).map((_, i) => (
+            {Array(5).fill().map((_, i) => (
               <div className="item" key={i}>
                 {["HTML", "CSS", "JAVASCRIPT", "REACT", "FIGMA", "GIT & GITHUB", "PYTHON"].map((tech, index) => (
                   <React.Fragment key={`${i}-${index}`}>
@@ -163,10 +166,6 @@ function App() {
             ))}
           </div>
         </div>
-
-      </section> 
-
-      <section className="outro">
         <h1>
           vem dar uma olhada no que <br /> eu fiz recentemente!
         </h1>
