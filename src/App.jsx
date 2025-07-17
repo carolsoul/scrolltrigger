@@ -42,6 +42,67 @@ function App() {
     ScrollTrigger.refresh();
   }, [imagemCarregada]);
 
+  const Magnet = ({
+    children,
+    padding = 100,
+    disabled = false,
+    magnetStrength = 2,
+    activeTransition = "transform 0.3s ease-out",
+    inactiveTransition = "transform 0.5s ease-in-out",
+    wrapperClassName = "",
+    innerClassName = "",
+    ...props
+  }) => {
+    const magnetRef = useRef(null);
+    const [isActive, setIsActive] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+      if (disabled) return;
+
+      const handleMouseMove = (e) => {
+        const el = magnetRef.current;
+        if (!el) return;
+
+        const { left, top, width, height } = el.getBoundingClientRect();
+        const centerX = left + width / 2;
+        const centerY = top + height / 2;
+
+        const distX = Math.abs(e.clientX - centerX);
+        const distY = Math.abs(e.clientY - centerY);
+
+        if (distX < width / 2 + padding && distY < height / 2 + padding) {
+          setIsActive(true);
+          setPosition({
+            x: (e.clientX - centerX) / magnetStrength,
+            y: (e.clientY - centerY) / magnetStrength,
+          });
+        } else {
+          setIsActive(false);
+          setPosition({ x: 0, y: 0 });
+        }
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    }, [disabled, padding, magnetStrength]);
+
+    const style = {
+      transform: `translate(${position.x}px, ${position.y}px)`,
+      transition: isActive ? activeTransition : inactiveTransition,
+    };
+
+    return (
+      <div className={`magnet-wrapper ${wrapperClassName}`} ref={magnetRef} {...props}>
+        <div className={`magnet-inner ${innerClassName}`} style={style}>
+          {children}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="container">
       <nav><a href="#">carol <br /> Sousa</a></nav>  
@@ -55,7 +116,7 @@ function App() {
         <div className="card" id="card-1" ref={card1}>
           <img
             src="./carolHalftone.svg"
-            alt="Imagem"
+            alt="Foto de Carol Sousa"
             onLoad={() => setImagemCarregada(true)} // só inicia animação quando a imagem estiver carregada
           />
         </div>
@@ -63,10 +124,35 @@ function App() {
 
       <section className="outro">
         <h1>
-          This page doesn't exist anymore... but that's okay. 
-          <br />
-          We'll get you right back on track!
+          vem dar uma olhada no que <br /> eu fiz recentemente!
         </h1>
+
+        <div className="eyes-container">
+
+          <div className="eye-1">
+            <Magnet className="magnet" padding={500} magnetStrength={20}> 
+                <div className="pupil">
+                  <Magnet className="magnet" padding={500} magnetStrength={55}> 
+                    <div className="bright"></div>
+                  </Magnet>
+                </div>
+              </Magnet>
+          </div>
+
+          <div className="eye-2">
+            <Magnet className="magnet" padding={500} magnetStrength={20}> 
+                <div className="pupil">
+                  <Magnet className="magnet" padding={500} magnetStrength={55}> 
+                    <div className="bright"></div>
+                  </Magnet>
+                </div>
+              </Magnet>
+          </div>
+
+        </div>
+
+        
+          <img src="./carolHalftoneEyes.svg" alt="Foto de Carol Sousa" className='carolEyes'/>
       </section>   
     </div>
   );
