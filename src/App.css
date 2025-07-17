@@ -105,6 +105,54 @@ nav{
   top: 15%;
 }
 
+.loop-container{
+    background-color: black;
+    display: flex;
+    white-space: nowrap;
+    position: relative;
+    top: 45rem;
+    overflow: hidden;
+    z-index: 3;
+    width: auto;
+    position: absolute;
+}
+
+.list{
+    display: flex;
+    align-items: top;
+    -webkit-animation: loop 30s infinite linear;
+    animation: loop 30s infinite linear;
+}
+
+.item-txt{
+    font-family: 'Plein', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: #4000FF;
+}
+
+.item-d{
+  display: inline;
+}
+
+.item-slash{
+    font-family: 'Plein', sans-serif;
+    margin: 0 50px;
+    display: inline-block;
+    color: #4000FF;
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+@keyframes loop {
+    100% {
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+
+/* ---------------------section outro ----------------- */
+
 .outro{
   position: absolute;
   top: 240vh;

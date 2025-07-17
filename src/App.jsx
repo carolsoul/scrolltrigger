@@ -148,6 +148,22 @@ function App() {
             onLoad={() => setImagemCarregada(true)} // só inicia animação quando a imagem estiver carregada
           />
         </div>
+
+        <div className="loop-container">
+          <div className="list">
+            {Array(4).fill(null).map((_, i) => (
+              <div className="item" key={i}>
+                {["HTML", "CSS", "JAVASCRIPT", "REACT", "FIGMA", "GIT & GITHUB", "PYTHON"].map((tech, index) => (
+                  <React.Fragment key={`${i}-${index}`}>
+                    <span className="item-txt">{tech}</span>
+                    <span className="item-d"><p className="item-slash">/</p></span>
+                  </React.Fragment>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
       </section> 
 
       <section className="outro">
